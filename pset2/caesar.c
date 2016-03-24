@@ -15,7 +15,7 @@ int main(int argc, string argv[])
     
     if (argc != 2)
     {
-        printf("Usage: ~/workspacce/CS50x/pset2/caesar <key>");
+        printf("Usage: ~/workspacce/CS50x/pset2/caesar <key>\n");
         return 1;
     }
     
@@ -23,7 +23,7 @@ int main(int argc, string argv[])
     
     if (k < 0)
     {
-        printf("Key must be a non-negative integer.");
+        printf("Key must be a non-negative integer.\n");
         return 1;
     }
     
