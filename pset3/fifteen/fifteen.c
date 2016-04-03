@@ -159,7 +159,16 @@ void greet(void)
  */
 void init(void)
 {
-    // TODO
+    for (int i = 0; i < (d*d); i++)
+    {
+        board[(i / d)][(i % d)] = ((d*d) - i - 1);
+    }
+    
+    if (d % 2 == 0)
+    {
+        board[d-1][d-3]--;
+        board[d-1][d-2]++;
+    }
 }
 
 /**
@@ -167,7 +176,22 @@ void init(void)
  */
 void draw(void)
 {
-    // TODO
+    for (int i = 0; i < d; i++)
+    {
+        for (int j = 0; j < d; j++)
+        {
+            if (board[i][j] > 0)
+                printf("%d", board[i][j]);
+            else
+                printf("_");
+            if ((j < d - 1) && (board[i][j] < 10))
+                printf("    ");
+            else if (j < d - 1)
+                printf("   ");
+            else
+                printf("\n\n");
+        }
+    }
 }
 
 /**
@@ -176,7 +200,69 @@ void draw(void)
  */
 bool move(int tile)
 {
-    // TODO
+    // Find location of given tile.
+    int r; // Row index
+    int c; // Column index
+    
+    for (int i = 0; i < d; i++)
+    {
+        for (int j = 0; j < d; j++)
+        {
+            if (board[i][j] == tile)
+            {
+                r = i;
+                c = j;
+            }
+        }
+    }
+    
+    // Check if adjacent to empty space, swap if so.
+    
+    // Check tile above.
+    if (r > 0)
+    {
+        if (board[r-1][c] == 0)
+        {
+            board[r-1][c] = board[r][c];
+            board[r][c] = 0;
+            return true;
+        }
+    }
+    
+    // Check tile below.
+    if (r < d - 1)
+    {
+        if (board[r+1][c] == 0)
+        {
+            board[r+1][c] = board[r][c];
+            board[r][c] = 0;
+            return true;
+        }
+    }
+    
+    // Check tile to left.
+    if (c > 0)
+    {
+        if (board[r][c-1] == 0)
+        {
+            board[r][c-1] = board[r][c];
+            board[r][c] = 0;
+            return true;
+        }
+    }
+    
+    // Check tile to right.
+    if (c < d - 1)
+    {
+        if (board[r][c+1] == 0)
+        {
+            board[r][c+1] = board[r][c];
+            board[r][c] = 0;
+            return true;
+        }
+    }
+    
+    // If function hasn't returned, move is illegal.
     return false;
 }
 
@@ -186,6 +272,19 @@ bool move(int tile)
  */
 bool won(void)
 {
-    // TODO
-    return false;
+    // Set flag for win condition.
+    bool win_condition = true;
+    
+    // Verify condition.
+    for (int i = 0; i < d; i++)
+    {
+        for (int j = 0; j < d; j++)
+        {
+            if (board[i][j] != ((d*i) + (j+1)) % (d*d))
+            {
+                win_condition = false;
+            }
+        }
+    }
+    return win_condition;
 }
