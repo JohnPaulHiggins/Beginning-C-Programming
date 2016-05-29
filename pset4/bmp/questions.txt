@@ -1,0 +1,35 @@
+0.  BMP: 16 million GIF: 256 JPEG: 16 million PNG: 256 trillion
+1.  GIF
+2.  Lossless - no information lost. Lossy - ideally, redudant or not noticeable
+    information lost.
+3.  JPEG.
+4.  The first character is altered to indicate that the file has been deleted, 
+    and the memory is marked so that the system can write over it. 
+5.  Destroy the storage medium or, at a minimum, overwrite the memory and erase
+    again.
+6.  A header file which declares integer types, and specifies their widths.
+7.  To guarantee that the system is operating with unsigned 8-bit integers,
+    unsigned 32-bit integers, signed 32-bit integers, and unsigned 16-bit
+    integers, respectively.
+8.  8, 32, 32, 16.
+9.  BM.
+10. bfSize is the size of the entire file; biSize is the size of the info header
+    structure.
+11. The BMP is top-down DIB; the origin is the top-left corner instead of the
+    bottom-left.
+12. biBitCount
+13. If system cannot find or access outfile.
+14. Because we read in one pixel at a time.
+15. We want the length of a scanline (in bytes) to be a multiple of 4; in the
+    event that the width of the picture is 3 pixels, it is 9 bytes long and
+    needs three bytes of padding.
+    (4 - (bi.biWidth * sizeof(RGBTRIPLE) % 4)) % 4 =
+    (4 - (3 * 3 % 4)) % 4 =
+    (4 - (9 % 4)) % 4 =
+    (4 - 1) % 4 =
+    3 % 4 =
+    3
+16. Moves the file position indicator in file [first argument] to location
+    [third argument address + second argument * bytes]
+17. The current location of the file position indicator.
+18. Rick Astley? Ronald Reagan?
