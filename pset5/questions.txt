@@ -1,0 +1,39 @@
+0.  Lung disease; longest word in our dictionary.
+1.  Returns resource usage for a specified process/thread or the children of a process.
+2.  16
+3.  Saves time, CPU and memory usage, and code size.
+4.  Speller reads in one character at a time (until reaching EOF). Checks that character
+    is either alphabetical, or else an apostrophe (but, if apostrophe, not first
+    character in word).
+    
+    Then character is appended to word, index is incremented.
+    If index exceeds maximum length, we don't have a word; just keep reading
+    characters until hitting non-alphabetical character or EOF (signifying end
+    of word) and reset index for next word.
+    
+    Likewise, if encountering a number, just move to next word.
+    
+    If word's not too long, and doesn't contain a number, then upon encountering
+    a non-alphabetic character we know we have a complete word (assuming there
+    are some alphabetic characters, i.e. index > 0).
+    
+    We add the string termination character to delineate the end of the word,
+    and increment the word count. The word is subsequently spell-checked,
+    with the time to check being logged.
+    
+    If the word is misspelled, print it, and increment the number of misspellings.
+    
+    Finally, reset index to zero to prepare for the next word, and repeat until 
+    EOF reached.
+5.  We would not be able to skip words of excessive length (vulnerable to buffer
+    overflow) or those containing numbers.
+6.  To prevent the called functions from modifying the word being checked or the
+    dictionary being loaded.
+7.  I implemented a trie; each node contained a boolean to indicate whether the
+    node was the last character in a word, and an array of 27 pointers to
+    represent the 27 possible next characters (lowercase alphabetical, and
+    apostrophe).
+8.  Quite fast, actually; about 0.2 seconds to spell-check Austin Powers.
+9.  I made no changes to improve speed; I did, however, forget to build check
+    with apostrophe-checking functionality! I had to fix that.
+10. I have not noticed any bottlenecks to begin with.
